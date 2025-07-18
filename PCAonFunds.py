@@ -9,16 +9,6 @@ class FactorClusterer:
     """
     Cluster hedge funds based on their exposure to a single PC1 factor series using DBSCAN,
     and plot the results.
-
-    Usage:
-        clusterer = FactorClusterer(
-            factor_series=pc1_growth,    # pd.Series indexed by date
-            fund_returns=funds_df,        # pd.DataFrame indexed by date
-            eps=0.5,                      # DBSCAN eps
-            min_samples=2                 # DBSCAN min_samples
-        )
-        result = clusterer.run()
-        clusterer.plot_clusters(result)
     """
 
     def __init__(
@@ -34,16 +24,15 @@ class FactorClusterer:
         self.min_samples = min_samples
 
     def align_data(self):
-        # Ensure unique indexes on both series and DataFrame
-        # Drop any duplicate dates to avoid reindexing error
+
         self.funds = self.funds[~self.funds.index.duplicated(keep='first')]
         self.factor = self.factor[~self.factor.index.duplicated(keep='first')]
-        # Inner join on dates via merge to avoid non-unique index issues
+
         df_funds = self.funds.reset_index().rename(columns={'index':'Date'})
         df_factor = self.factor.reset_index().rename(columns={'index':'Date'})
         df_all = pd.merge(df_funds, df_factor, on='Date', how='inner')
         df_all = df_all.set_index('Date')
-        # Separate back into aligned funds and factor
+
         self.aligned_funds = df_all[self.funds.columns]
         self.aligned_factor = df_all['PC1']
 
@@ -71,10 +60,7 @@ class FactorClusterer:
         self.exposure_df['cluster'] = labels
 
     def run(self) -> pd.DataFrame:
-        """
-        Execute the full pipeline: align, compute exposures, standardize, cluster.
-        Returns a DataFrame with index = fund names and columns ['beta', 'cluster'].
-        """
+
         self.align_data()
         self.compute_exposures()
         self.standardize()
@@ -82,9 +68,7 @@ class FactorClusterer:
         return self.exposure_df
 
     def plot_clusters(self, result: pd.DataFrame):
-        """
-        Plot fund exposures colored by DBSCAN cluster label.
-        """
+
 
         x = result['beta']
         y = result['cluster']
@@ -122,16 +106,15 @@ if __name__ == '__main__':
 
 
 if __name__ == "__main__":
-    # 1) PCA
+
     pipelines = FactorPCA.run_all()
 
-    # 2) Load funds
     funds_df = pd.read_excel(
         r"C:\repos\factors\real_estate.xlsx",
         index_col=0, parse_dates=True
     )
 
-    # 3) Summarize clusters across factors
+
     summary_builder = FundClusterSummary(
         pipelines=pipelines,
         funds_df=funds_df,

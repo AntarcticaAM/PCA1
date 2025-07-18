@@ -1,4 +1,3 @@
-# classes1.py
 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
@@ -39,12 +38,10 @@ class FactorPCA:
     def run_pca(self):
         df = self.df.dropna()
 
-        # 1) Fit PCA on the standardized data
         scaler = StandardScaler()
         X_std  = scaler.fit_transform(df)
         pca    = PCA().fit(X_std)
 
-        # 2) (Optional) keep z-scored scores & explained variance
         pc_cols = [f"PC{i+1}" for i in range(pca.n_components_)]
         self.scores = pd.DataFrame(
             pca.transform(X_std),
@@ -57,12 +54,9 @@ class FactorPCA:
             name=f"{self.name}_explained_variance_ratio"
         )
 
-        # 3) Reconstruct PC1 in raw %-return units:
-        #    loadings on standardized data ÷ original σ’s
-        loadings    = pca.components_[0]        # eigenvector for PC1
-        raw_weights = loadings / scaler.scale_  # scaler.scale_ = σ’s of each column
+        loadings    = pca.components_[0]        
+        raw_weights = loadings / scaler.scale_  
 
-        #    dot into the raw df to get PC1 in %-return units
         pc1_raw = df.dot(raw_weights)
         pc1_raw.name = f"{self.name}_PC1_return"
 

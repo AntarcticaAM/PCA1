@@ -23,20 +23,20 @@ class MultiFactorClusterer:
         self.results = {}
 
     def _cluster_factor(self, factor_name: str) -> pd.DataFrame:
-        # extract and align PC1 series with funds on dates
+
         pc1 = self.pipelines[factor_name].pc1_returns.rename('PC1')
-        # drop duplicate dates
+
         funds = self.funds[~self.funds.index.duplicated(keep='first')]
         series = pc1[~pc1.index.duplicated(keep='first')]
-        # merge on date to ensure unique index
+
         df_f = funds.reset_index().rename(columns={'index':'Date'})
         df_s = series.reset_index().rename(columns={'index':'Date'})
         df_all = pd.merge(df_f, df_s, on='Date', how='inner').set_index('Date')
-        # separate aligned funds and factor
+
         funds_aligned = df_all[funds.columns]
         pc1_aligned = df_all['PC1']
 
-        # compute fund exposures via univariate OLS
+
         exposures = {}
         X = sm.add_constant(pc1_aligned).astype(float)
         for fund in funds_aligned.columns:
@@ -49,15 +49,15 @@ class MultiFactorClusterer:
                 exposures[fund] = model.params.get('PC1', 0.0)
 
         df = pd.Series(exposures, name='beta').to_frame()
-        # z-score exposures
+
         scaler = StandardScaler()
         df['beta_z'] = scaler.fit_transform(df[['beta']])
-        # apply DBSCAN
+        
         db = DBSCAN(eps=self.eps, min_samples=self.min_samples)
         df['cluster'] = db.fit_predict(df[['beta_z']])
-        # compute beta ranges per cluster
+
         ranges = df.groupby('cluster')['beta'].agg(min='min', max='max').reset_index()
-        # label clusters
+       
         def make_label(r):
             lo, hi, cl = r['min'], r['max'], r['cluster']
             if cl == -1:
@@ -70,10 +70,7 @@ class MultiFactorClusterer:
         return df
 
     def run_all(self) -> dict:
-        """
-        Perform clustering for each factor in pipelines.
-        Returns dict of {factor_name: labeled_df}.
-        """
+
         for name in self.pipelines:
             self.results[name] = self._cluster_factor(name)
         return self.results
@@ -98,17 +95,7 @@ class MultiFactorClusterer:
         plt.show()
 
     def plot_all(self):
-        """
-        Generate plots for each factor in pipelines.
-        """
+
         for name in self.pipelines:
             self.plot_factor(name)
 
-# Example of usage in a script
-# from classes1 import FactorPCA
-# from multi_factor_clusterer import MultiFactorClusterer
-# pipelines = FactorPCA.run_all()
-# funds_df = pd.read_excel(..., index_col=0, parse_dates=True)
-# mfc = MultiFactorClusterer(pipelines, funds_df, eps=0.6, min_samples=3)
-# results = mfc.run_all()
-# mfc.plot_all()
