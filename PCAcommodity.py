@@ -52,27 +52,25 @@ df = df.dropna()
 scaler = StandardScaler()
 X_std = scaler.fit_transform(df)
 
-# 3) PCA
 pca = PCA()
 pcs = pca.fit_transform(X_std)
 
-# 4) Build a DataFrame of PC scores
+
 pc_cols = [f"PC{i+1}" for i in range(pcs.shape[1])]
 df_pcs = pd.DataFrame(pcs, index=df.index, columns=pd.Index(pc_cols))
 
-# 5) (Optional) Inspect
+
 print(df_pcs.head())
 print("Explained variance:", pca.explained_variance_ratio_)
 
 loadings = pca.components_
 
-# 2) make a Series for PC1’s weights
+
 pc1_weights = pd.Series(
-    loadings[0],              # the first row of components_
-    index=df.columns, # your 8 index names
+    loadings[0],              
+    index=df.columns, 
     name="PC1_weight"
 )
 
+pc1_returns_commodity = df_pcs['PC1']
 print(pc1_weights)
-#clean the data for msci
-#problem with sci beta it does not have the same last day month returns every 4 months

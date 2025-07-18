@@ -38,21 +38,35 @@ class FactorPCA:
 
     def run_pca(self):
         df = self.df.dropna()
-        X_std = StandardScaler().fit_transform(df)
-        pca   = PCA().fit(X_std)
 
+        # 1) Fit PCA on the standardized data
+        scaler = StandardScaler()
+        X_std  = scaler.fit_transform(df)
+        pca    = PCA().fit(X_std)
+
+        # 2) (Optional) keep z-scored scores & explained variance
         pc_cols = [f"PC{i+1}" for i in range(pca.n_components_)]
-        self.scores = pd.DataFrame(pca.transform(X_std),
-                                   index=df.index,
-                                   columns=pd.Index(pc_cols))
+        self.scores = pd.DataFrame(
+            pca.transform(X_std),
+            index=df.index,
+            columns=pc_cols
+        )
         self.explained_variance_ratio = pd.Series(
             pca.explained_variance_ratio_,
             index=pc_cols,
             name=f"{self.name}_explained_variance_ratio"
         )
-        self.pc1_returns = self.scores["PC1"].copy()
-        self.pc1_returns.name = f"{self.name}_PC1_return"
 
+        # 3) Reconstruct PC1 in raw %-return units:
+        #    loadings on standardized data ÷ original σ’s
+        loadings    = pca.components_[0]        # eigenvector for PC1
+        raw_weights = loadings / scaler.scale_  # scaler.scale_ = σ’s of each column
+
+        #    dot into the raw df to get PC1 in %-return units
+        pc1_raw = df.dot(raw_weights)
+        pc1_raw.name = f"{self.name}_PC1_return"
+
+        self.pc1_returns = pc1_raw
         return self
 
     @classmethod

@@ -50,112 +50,97 @@ real_estate_tickers = [
 
     'NDUWREIT Index',   # MSCI World Real Estate Net Total Return USD Index 2005
 
-    'APREITUT',         # iEdge APAC REIT Index (Total Return) USD — start 2009
-    'WGREIT',           # Wilshire Global REIT Index — start 2003
+    'APREITUT Index',         # iEdge APAC REIT Index (Total Return) USD — start 2009
+    'WGREIT Index',           # Wilshire Global REIT Index — start 2003
 
-    'SOLWR30',          # Solactive World REIT 30 Index — start 2014
+    'SOLWR30 Index',          # Solactive World REIT 30 Index — start 2014
 
-    'BXIIGRU0',         # Shiller Barclays Global REITs Value Gross TR USD Index — start 2004
+    'BXIIGRU0 Index',         # Shiller Barclays Global REITs Value Gross TR USD Index — start 2004
 
-    'SXGREL',           # STOXX Global 1800 Real Estate Index USD — starts end-2008
+    'SXGREL Index',           # STOXX Global 1800 Real Estate Index USD — starts end-2008
 
-    'SPDL60UP',         # S&P World Real Estate (Sector) Index (USD) — start 2016
+    'SPDL60UP Index',         # S&P World Real Estate (Sector) Index (USD) — start 2016
 
-    'RGUSF06',          # Russell 3000 Index Real Estate — start 2013
-    'R250035T',         # Russell 2500 Real Estate Total Return Index — start 2009
+    'RGUSF06 Index',          # Russell 3000 Index Real Estate — start 2013
+    'R250035T Index',         # Russell 2500 Real Estate Total Return Index — start 2009
 
-    'IXRE',             # Real Estate Select Sector Index — start 2011
+    'IXRE Index',             # Real Estate Select Sector Index — start 2011
 
-    'NTDREP',           # NORTHERN TRUST DEVELOPED REAL ESTATE PRICE INDEX (USD) — start 2016
+    'NTDREP Index',           # NORTHERN TRUST DEVELOPED REAL ESTATE PRICE INDEX (USD) — start 2016
 
-    'MREIGRUP',         # Morningstar Global Markets REIT PR USD — start 2004
+    'MREIGRUP Index',         # Morningstar Global Markets REIT PR USD — start 2004
 
-    'MQ5CREAP',         # MerQube US Large Cap Real Estate Index — start 2002
+    'MQ5CREAP Index',         # MerQube US Large Cap Real Estate Index — start 2002
 
 
-    'IIDKRYT',          # Invesco Developed Markets ex-Japan All Cap REIT Total Return Index (JPY) — start 2006
-    'IIJRYT',           # Invesco Japan All Cap REIT Total Return Index (JPY) — start 2006
+    'IIDKRYT Index',          # Invesco Developed Markets ex-Japan All Cap REIT Total Return Index (JPY) — start 2006
+    'IIJRYT Index',           # Invesco Japan All Cap REIT Total Return Index (JPY) — start 2006
 
-    'REITGLEU',         # GPR 250 REIT WORLD INDEX/ EUR — start 1998
+    'REITGLEU Index',         # GPR 250 REIT WORLD INDEX/ EUR — start 1998
 
-    'DWLDREP',          # Euronext Developed World Real Estate Total Market — start 2009
+    'DWLDREP Index',          # Euronext Developed World Real Estate Total Market — start 2009
 
-    'DWRTF',            # Dow Jones Wilsire REIT Index Full Cap — start 1998
+    'DWRTF Index',            # Dow Jones Wilsire REIT Index Full Cap — start 1998
 
-    'BXIICCRT',         # DigitalBridge Fundamental US Real Estate Index Total Return — start 2003
+    'BXIICCRT Index',         # DigitalBridge Fundamental US Real Estate Index Total Return — start 2003
 
-    'DWMFRT',           # DJMEAslct REIT — start 2005
-    'DWEURT',           # DJEurpslct REIT — start 2004
-    'DWAPRT',           # DJAsiaPslct REIT — start 2004
-    'DWAMRT',           # DJAmrslct REIT — start 2004
+    'DWMFRT Index',           # DJMEAslct REIT — start 2005
+    'DWEURT Index',           # DJEurpslct REIT — start 2004
+    'DWAPRT Index',           # DJAsiaPslct REIT — start 2004
+    'DWAMRT Index',           # DJAmrslct REIT — start 2004
 
-    'CRSPRE1',          # CRSP US Real Estate & REITs Index — start 2010
+    'CRSPRE1 Index',          # CRSP US Real Estate & REITs Index — start 2010
 
-    'SZ399367',         # CNI Real Estate 50 Index — start 2009
+    'SZ399367 Index',         # CNI Real Estate 50 Index — start 2009
 
-    'MLEUREAL',         # BofA EU Real Estate — start 1999
+    'MLEUREAL Index',         # BofA EU Real Estate — start 1999
 
     'WLSTR Index',      # Bloomberg World Real Estate Large, Mid & Small Cap Total Return Index — start 2002
-    'SREITWHT',         # BMI Developed REIT JPY-Hedged TR — start 1988
-    'IMOBBV',           # BM&FBOVESPA Real Estate Index — start 2007
+    'SREITWHT Index',         # BMI Developed REIT JPY-Hedged TR — start 1988
+    'IMOBBV Index',           # BM&FBOVESPA Real Estate Index — start 2007
 
-    'SAP10XP',          # 10X SA Property Index — start 2015
+    'SAP10XP Index',          # 10X SA Property Index — start 2015
 ]
 momentum_tickers = [
     'SP500MUP Index',    # S&P 500 Momentum U.S. Dollar Index — start 1971
 
     'AWPMTE Index',      # FTSE All-World Pure Momentum Target Exposure Factor Index — start 1999
 
-    'CIISPMUT Index',    # Citi Pure Price Momentum US Long-Short TR Index — start 2003
-    'CIISPMJT Index',    # Citi Pure Price Momentum Japan Long-Short Net TR Index — start 2005
-    'CIISPMET Index',    # Citi Price Momentum Pure Europe TR Index — start 1998
-
     'SBEXMHMN Index',    # SciBeta Eurozone High-Momentum Multi-Strat Net Return — start 2001
     'SBJXMHMN Index',    # SciBeta Japan High-Momentum Multi-Strat Net Return — start year unspecified
     'SBUXMLMN Index',    # SciBeta USA High-Momentum Multi-Strat Net Return — start year unspecified
 
-    'GSISEMJG Index',    # GS TFS Momentum Japan Top GTR JPY — start 2015
     'GSPEMOMO Index',    # GS EU High Beta Momentum — start 2006
     'GSCNDMOS Index',    # GS CND US Momentum Short — start 2010
     'GSCNDMOL Index',    # GS CND US Momentum Long — start year unspecified
 
-    'BXIIMMUE Index',    # Barclays US Momentum Equity Market Hedged Index ER — start 2004
-    'BXIIMMJD Index',    # Barclays Japan Momentum Equity Market Hedged Index USD ER — start 2004
-    'BXIIMMED Index',    # Barclays Eurozone Momentum Equity Market Hedged Index USD ER — start 2003
-
-    'HSIEMUPU Index',    # HSBC Momentum Factor US Price Return Index (USD) — start 2006
-    'HSIEMEPU Index',    # HSBC Momentum Factor Europe Price Return Index (USD) — start 2006
-
-    'UBPTMOMO Index',    # UBS L/S Momentum Quant Factor — start 2016
-
-    'AQRMOMLC',          # AQR Momentum Index — start 2002
-
-    'BNPIF3AM',          # BNP Paribas Alpha Momentum Index — start 2001
-
-    'BSMOU',             # BSE Momentum Index (USD) — start 2004
-
-    'DJTMNMO',           # Dow Jones U.S. Thematic Market Neutral Momentum Index — start 2000
-
-    'R2FPMF',            # Russell 2000 Momentum Factor Total Return Index — start 2006
-    'R1FPMFR',           # Russell 1000 Momentum Factor Index — start 2016
+    'BXIIMETE Index',    # Barclays Eurozone Momentum Equity TR EUR Index start 2001
+    'BXIIMJTJ Index',    # Barclays Japan Momentum Equity TR JPY Index
+    'BXIIMUTU Index',    # Barclays US Momentum Equity TR USD Index
 
 
-    'M1WOMOM',           # MSCI World Momentum Net Total Return USD Index — start 1973
-    'IIGMT',             # Invesco Global Price Momentum Total Return Index — start 2001
 
-    'MMO50P',            # Morningstar US Momentum Target 50 USD PR — start 2002
-    'MSDMUP',            # Morningstar Developed Markets ex-North America Target Momentum PR USD — start 2013
-    'MCMOP',             # Morningstar Canada Momentum Index PR CAD — start 1999
+    'AQRMOMLC Index',          # AQR Momentum Index — start 2002
 
-    'NQFFM',             # Nasdaq Factor Family US Momentum Index — start 2006
-    'ISMGMU',            # iSTOXX MUTB Global Momentum 600 Gross Return USD — start 2002
-    'SAW1MOGV',          # STOXX Global 1800 Ax Momentum Gross Return USD — start 2001
-    'SPIMPC',            # SPI Momentum Premium® CHF (Total Return) — start 2003
 
-    'RBCUMTML',          # RBC US Momentum Long Index USD GROSS — start 2006
-    'RBCUMTMS',          # RBC US Momentum Short Index USD GROSS — start 2006
+    'R2FPMF Index',            # Russell 2000 Momentum Factor Total Return Index — start 2006
 
-    'SGEPMBW',           # SGI World Momentum Index — start 2001
+
+    'M1WOMOM Index',           # MSCI World Momentum Net Total Return USD Index — start 1973
+    'IIGMT Index',             # Invesco Global Price Momentum Total Return Index — start 2001
+
+    'MMO50P Index',            # Morningstar US Momentum Target 50 USD PR — start 2002
+    'MSDMUP Index',            # Morningstar Developed Markets ex-North America Target Momentum PR USD — start 2013
+    'MCMOP Index',             # Morningstar Canada Momentum Index PR CAD — start 1999
+
+    'NQFFM Index',             # Nasdaq Factor Family US Momentum Index — start 2006
+    'ISMGMU Index',            # iSTOXX MUTB Global Momentum 600 Gross Return USD — start 2002
+    'SAW1MOGV Index',          # STOXX Global 1800 Ax Momentum Gross Return USD — start 2001
+
+    'RBCUMTML Index',          # RBC US Momentum Long Index USD GROSS — start 2006
+    'RBCUMTMS Index',          # RBC US Momentum Short Index USD GROSS — start 2006
+
+    'SGEPMBW Index',           # SGI World Momentum Index — start 2001
 ]
 growth_tickers = [
     'SGX Index',         # S&P 500 Growth Index — start 1991
@@ -165,7 +150,7 @@ growth_tickers = [
     'CGRQPCNG Index',    # Citi China Pure Growth — start year unspecified
     'CGRQPUSG Index',    # Citi US Pure Growth — start year unspecified
 
-    'CGUSECOG',          # Economic Growth Equity Implied Macro Factor — start 1999
+    'CGUSECOG Index',          # Economic Growth Equity Implied Macro Factor — start 1999
 
     'SPSG Index',        # S&P Small Cap 600/Citigroup Growth Provisional Index — start 2010
     'SPMG Index',        # S&P MidCap 400/Citigroup Growth Provisional Index — start 2010
@@ -179,47 +164,47 @@ growth_tickers = [
 
     'GSXUSGRO Index',    # GS Secular Growth — start 2005
     'GSPEMFGR Index',    # GS EU Growth — start 2006
-    'GSINGFUS',          # GS Growth Factor United States Macro Basket — start 2006
+    'GSINGFUS Index',          # GS Growth Factor United States Macro Basket — start 2006
 
     'AWORLDSG Index',    # FTSE All-World Growth Index — start 2017
 
     'WORLDGN Index',     # Bloomberg World Large & Mid Cap Growth Net Return Index — start 2015
-    'RUTP50TR',          # Russell Top 50 Index Total Return — start 2004
+    'RUTP50TR Index',          # Russell Top 50 Index Total Return — start 2004
 
-    'INDX6146',          # iNDEX World Growth — start 2016
+    'INDX6146 Index',          # iNDEX World Growth — start 2016
 
-    'RU10USPG',          # Russell 1000 USD Price Return Growth Index — start 2005
-    'RU20GRTR',          # Russell 2000 Total Return Growth Index — start year unspecified
-    'RU30GRTR',          # Russell 3000 Total Return Growth Index — start year unspecified
-    'RU25USPG',          # Russell 2500 USD Price Return Growth Index — start year unspecified
+    'RU10USPG Index',          # Russell 1000 USD Price Return Growth Index — start 2005
+    'RU20GRTR Index',          # Russell 2000 Total Return Growth Index — start year unspecified
+    'RU30GRTR Index',          # Russell 3000 Total Return Growth Index — start year unspecified
+    'RU25USPG Index',          # Russell 2500 USD Price Return Growth Index — start year unspecified
 
-    'SBVGIGEN',          # Solactive BBVA ixS Global Inclusive Growth EUR Index NTR — start 2009
-    'NFGGI',             # New Frontier Global Growth Index — start 2003
-    'BSDFU',             # BSE Diversified Financials Revenue Growth Index (USD) — start 2005
+    'SBVGIGEN Index',          # Solactive BBVA ixS Global Inclusive Growth EUR Index NTR — start 2009
+    'NFGGI Index',             # New Frontier Global Growth Index — start 2003
+    'BSDFU Index',             # BSE Diversified Financials Revenue Growth Index (USD) — start 2005
 
-    'BBEQUGUN',          # BBVA US Sector Neutral Growth Index NTR — start 2005
+    'BBEQUGUN Index',          # BBVA US Sector Neutral Growth Index NTR — start 2005
 
-    'BNPIFEGU',          # BNP Paribas Growth US Index — start 2005
+    'BNPIFEGU Index',          # BNP Paribas Growth US Index — start 2005
 
-    'CAFGTR',            # Pacer US Small Cap Cash Cows Growth Leaders Index — start year unspecified
-    'COWGTR1',           # Pacer US Large Cap Cash Cows Growth Leaders Total Return Index — start year unspecified
+    'CAFGTR Index',            # Pacer US Small Cap Cash Cows Growth Leaders Index — start year unspecified
+    'COWGTR1 Index',           # Pacer US Large Cap Cash Cows Growth Leaders Total Return Index — start year unspecified
 
-    'CAPSGEU',           # The EU Growth Strength Index — start 2011
-    'CCUSTGH',           # CITIC CLSA US Stable Growth Basket — start 2011
+    'CAPSGEU Index',           # The EU Growth Strength Index — start 2011
+    'CCUSTGH Index',           # CITIC CLSA US Stable Growth Basket — start 2011
 
-    'DWLG',              # Dow Jones US Large-Cap Growth Total Stock Market Index — start year unspecified
-    'DWSMDG',            # Dow Jones US Low-Cap Growth Total Stock Market Index USD — start year unspecified
-    'DWMG',              # Dow Jones US Mid-Cap Growth Total Stock Market Index — start year unspecified
+    'DWLG Index',              # Dow Jones US Large-Cap Growth Total Stock Market Index — start year unspecified
+    'DWSMDG Index',            # Dow Jones US Low-Cap Growth Total Stock Market Index USD — start year unspecified
+    'DWMG Index',              # Dow Jones US Mid-Cap Growth Total Stock Market Index — start year unspecified
 
-    'FCIWAGN',           # FCI WORLD AC GROWTH 600 (NET) Index — start 2011
+    'FCIWAGN Index',           # FCI WORLD AC GROWTH 600 (NET) Index — start 2011
 
-    'GRINNT',            # Victory International Free Cash Flow Growth Net Total Return Index — start year unspecified
+    'GRINNT Index',            # Victory International Free Cash Flow Growth Net Total Return Index — start year unspecified
 
-    'HZIGB',             # Horizon Growth Buffer Index us — start year unspecified
+    'HZIGB Index',             # Horizon Growth Buffer Index us — start year unspecified
 
-    'IIDGROW',           # Invesco Dynamic Growth Index — start 2006
+    'IIDGROW Index',           # Invesco Dynamic Growth Index — start 2006
 
-    'MSGGTMGU',          # Morningstar Global Growth Target Market Exposure GR USD — start 2007
+    'MSGGTMGU Index',          # Morningstar Global Growth Target Market Exposure GR USD — start 2007
 ]
 quality_tickers = [
     'HSIEQETU Index',   # HSBC Quality Factor Europe Net Total Return Index (USD) — start 2006
@@ -237,40 +222,40 @@ quality_tickers = [
 
     'AWPQTE Index',     # FTSE All-World Pure Quality Target Exposure Factor Index — start 1999
 
-    'DBRPAEQU',         # DB Asia Equity Quality Factor 2.0 USD Excess Return Index
-    'DBRPEEQE',         # DB Europe Equity Quality Factor 2.0 EUR Excess Return Index
-    'DBRPNEQU',         # DB North America Equity Quality Factor 2.0 USD Excess Return Index
+    'DBRPAEQU Index',         # DB Asia Equity Quality Factor 2.0 USD Excess Return Index
+    'DBRPEEQE Index',         # DB Europe Equity Quality Factor 2.0 EUR Excess Return Index
+    'DBRPNEQU Index',         # DB North America Equity Quality Factor 2.0 USD Excess Return Index
 
-    'NQFFQ',            # Nasdaq Factor Family US Quality Index
+    'NQFFQ Index',            # Nasdaq Factor Family US Quality Index
 
-    'R1FQFR',           # Russell 1000 Quality Factor Index — start 2017
-    'R2FQF',            # Russell 2000 Quality Factor Total Return Index — start 2006
+    'R1FQFR Index',           # Russell 1000 Quality Factor Index — start 2017
+    'R2FQF Index',            # Russell 2000 Quality Factor Total Return Index — start 2006
 
-    'UBPTQLTY',         # UBS L/S Quality Quant Factor — start 2017
-    'UBSHTGQG',         # UBS HOLT Equity Factor Global Quality USD Gross Total Return Index
+    'UBPTQLTY Index',         # UBS L/S Quality Quant Factor — start 2017
+    'UBSHTGQG Index',         # UBS HOLT Equity Factor Global Quality USD Gross Total Return Index
 ]
 credit_tickers = [
     'CFIIXPVU',   # FTSE Nomura CaRD World Government Bond XOPV Index — start 2006
 ]
 commodity_tickers = [
-    'BCOMTR',    # Bloomberg Commodity Index Total Return — start 1960
-    'RICIGLTR',  # Rogers International Commodity Index Total Return — start 1997
-    'BCCFSKAP',  # Barclays Commodity BCCFSKAP Index — start 2006
-    'BXIIC4RP',  # Barclays Diversified Commodity 4% ARP Index — start 2007
-    'CCUDLPED',  # Citi CCUDLPED Commodity Index — start 1998
-    'EWCI',      # S&P GSCI Equal Weight Commodity Sector — start 2008
-    'PACITR',    # Picard Angst Commodity Index – Total Return — start 1997
-    'SOLCOSUS',  # Solactive Commodities Select Index — start 2007
-    'UISECC55',  # UBS Inflation Commodity Portfolio — start 2007
+    'BCOMTR Index',    # Bloomberg Commodity Index Total Return — start 1960
+    'RICIGLTR Index',  # Rogers International Commodity Index Total Return — start 1997
+    'BCCFSKAP Index',  # Barclays Commodity BCCFSKAP Index — start 2006
+    'BXIIC4RP Index',  # Barclays Diversified Commodity 4% ARP Index — start 2007
+    'CCUDLPED Index',  # Citi CCUDLPED Commodity Index — start 1998
+    'EWCI Index',      # S&P GSCI Equal Weight Commodity Sector — start 2008
+    'PACITR Index',    # Picard Angst Commodity Index – Total Return — start 1997
+    'SOLCOSUS Index',  # Solactive Commodities Select Index — start 2007
+    'UISECC55 Index',  # UBS Inflation Commodity Portfolio — start 2007
 ]
 defensive_tickers = [
-    'FIDUSDFP',   # Fidelity U.S. Equity Defensive Factor Index PR — start 1994
-    'DBGLD2BU',   # DB Equity Defensive Factor 2.0 - USD - Bottom Index — start 1999
-    'DBGLD2TU',   # DB Equity Defensive Factor 2.0 - USD - Top Index — start 1999
-    'PU704853',   # MSCI ACWI Defensive Sectors Price USD Index — start 2020
-    'RUDDFLCT',   # FTSE Developed Defensive Total Return Index — start 1996
-    'MXEMDEFC',   # EMU Defensive Sectors Capped USD Price Return — start 2014
-    'FCFDF',      # Abacus FCF Defensive Equity Leaders Index — start 1997
+    'FIDUSDFP Index',   # Fidelity U.S. Equity Defensive Factor Index PR — start 1994
+    'DBGLD2BU Index',   # DB Equity Defensive Factor 2.0 - USD - Bottom Index — start 1999
+    'DBGLD2TU Index',   # DB Equity Defensive Factor 2.0 - USD - Top Index — start 1999
+    'PU704853 Index',   # MSCI ACWI Defensive Sectors Price USD Index — start 2020
+    'RUDDFLCT Index',   # FTSE Developed Defensive Total Return Index — start 1996
+    'MXEMDEFC Index',   # EMU Defensive Sectors Capped USD Price Return — start 2014
+    'FCFDF Index',      # Abacus FCF Defensive Equity Leaders Index — start 1997
 ]
 size_tickers = [
     'CGRQPEUS Index',   # Citi EU Pure Size — start 1994
@@ -281,19 +266,16 @@ size_tickers = [
 
     'UBSHTGSN Index',   # UBS HOLT Equity Factor Global Size USD Net Total Return Index — start 2001
 
-    'FDFSF Index',      # FTSE Developed Size Factor Index TR — start 2000
-    'FEFSF Index',      # FTSE Emerging Size Factor Index TR — start 2000
+    'AWPSTE Index',           # FTSE All-World Pure Size Target Exposure Factor Index — start year unspecified
 
-    'AWPSTE',           # FTSE All-World Pure Size Target Exposure Factor Index — start year unspecified
+    'R1FSFR Index',           # Russell 1000 Size Factor Index — start 2017
+    'R2FSF Index',            # Russell 2000 Size Factor Total Return Index — start 2006
 
-    'R1FSFR',           # Russell 1000 Size Factor Index — start 2017
-    'R2FSF',            # Russell 2000 Size Factor Total Return Index — start 2006
+    'SAW1SZGV Index',         # STOXX Global 1800 Ax Size Gross Return USD — start year unspecified
 
-    'SAW1SZGV',         # STOXX Global 1800 Ax Size Gross Return USD — start year unspecified
+    'SGEPSBW Index',          # SGI World Size Index — start 2001
 
-    'SGEPSBW',          # SGI World Size Index — start 2001
-
-    'WUPSL',            # FT Wilshire US Large Pure Size Index — start 2017
+    'WUPSL Index',            # FT Wilshire US Large Pure Size Index — start 2017
 ]
 citi_weights_value = {
     'CGRQPUSQ Index': 0.63,

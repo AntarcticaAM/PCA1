@@ -91,5 +91,5 @@ pc1_weights = pd.Series(
     index=df.columns, 
     name="PC1_weight"
 )
-
+pc1_returns_size = df_pcs['PC1']
 print(pc1_weights)

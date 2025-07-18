@@ -130,30 +130,16 @@ schemes = {
 }
 }
 for col_name, weight_dict in schemes.items():
-    # build the DataFrame
+
     w = pd.DataFrame(weight_dict)
-    # normalize to sum to 1 each row
+
     w = w.div(w.sum(axis=1), axis=0)
 
-    # pull the matching columns from df, coercing to numeric
     region = df.loc[:,w.columns].apply(pd.to_numeric, errors='coerce')
 
-    # compute the weighted sum and assign to df
     df[col_name] = (region * w).sum(axis=1)
 
-    # drop the raw columns
     df.drop(columns=list(w.columns), inplace=True)
-
-
-
-
-
-
-
-
-
-
-
 
 print(df)
 df = df.dropna()
@@ -182,5 +168,3 @@ pc1_weights = pd.Series(
 )
 pc1_returns_growth = df_pcs['PC1']
 print(pc1_weights)
-#clean the data for msci
-#problem with sci beta it does not have the same last day month returns every 4 months

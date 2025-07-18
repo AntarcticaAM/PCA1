@@ -1,6 +1,6 @@
 import pandas as pd
 from xbbg import blp
-from sklearn.preprocessing import StandardScaler   # to standardize your returns
+from sklearn.preprocessing import StandardScaler   
 from sklearn.decomposition import PCA
 
 from tickers2 import hsbc_weights_value
@@ -64,10 +64,10 @@ hsbc_weights_value = pd.DataFrame({
 })
 sum_of_weights_hsbc = hsbc_weights_value.sum(axis=1)
 hsbc_weights_value = hsbc_weights_value.div(hsbc_weights_value.sum(axis=1), axis=0)
-region_hsbc = df[list(hsbc_weights_value)].apply(pd.to_numeric, errors='coerce')
+region_hsbc = df.loc[:,list(hsbc_weights_value)].apply(pd.to_numeric, errors='coerce')
 region_hsbc = region_hsbc[hsbc_weights_value.columns]
 
-# Element-wise multiply and sum across regions for each date
+
 df['hsbc_World_Growth'] = (region_hsbc * hsbc_weights_value).sum(axis=1)
 df.drop(columns=region_hsbc.columns, inplace=True) 
 
@@ -81,10 +81,10 @@ citi_weights_value = pd.DataFrame({
 })
 sum_of_weights_citi = citi_weights_value.sum(axis=1)
 citi_weights_value = citi_weights_value.div(citi_weights_value.sum(axis=1), axis=0)
-region_citi = df[list(citi_weights_value)].apply(pd.to_numeric, errors='coerce')
+region_citi = df.loc[:,list(citi_weights_value)].apply(pd.to_numeric, errors='coerce')
 region_citi = region_citi[citi_weights_value.columns]
 
-# Element-wise multiply and sum across regions for each date
+
 df['citi_World_value'] = (region_citi * citi_weights_value).sum(axis=1)
 df.drop(columns=region_citi.columns, inplace=True) 
 
@@ -100,7 +100,7 @@ pcs = pca.fit_transform(X_std)
 
 # 4) Build a DataFrame of PC scores
 pc_cols = [f"PC{i+1}" for i in range(pcs.shape[1])]
-df_pcs = pd.DataFrame(pcs, index=df.index, columns=pc_cols)
+df_pcs = pd.DataFrame(pcs, index=df.index, columns=pd.Index(pc_cols))
 
 # 5) (Optional) Inspect
 print(df_pcs.head())
@@ -114,7 +114,7 @@ pc1_weights = pd.Series(
     index=df.columns, # your 8 index names
     name="PC1_weight"
 )
-
+pc1_returns_value = df_pcs['PC1']
 print(pc1_weights)
 #clean the data for msci
 #problem with sci beta it does not have the same last day month returns every 4 months

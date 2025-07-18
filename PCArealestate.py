@@ -3,9 +3,64 @@ from xbbg import blp
 from sklearn.preprocessing import StandardScaler   # to standardize your returns
 from sklearn.decomposition import PCA
 
+real_estate_tickers = [
+    'CGRBGREI Index',   # Citi Global Real Estate #2016
+
+    'NDUWREIT Index',   # MSCI World Real Estate Net Total Return USD Index 2005
+
+    'APREITUT Index',         # iEdge APAC REIT Index (Total Return) USD — start 2009
+    'WGREIT Index',           # Wilshire Global REIT Index — start 2003
+
+    'SOLWR30 Index',          # Solactive World REIT 30 Index — start 2014
+
+    'BXIIGRU0 Index',         # Shiller Barclays Global REITs Value Gross TR USD Index — start 2004
+
+    'SXGREL Index',           # STOXX Global 1800 Real Estate Index USD — starts end-2008
+
+    'SPDL60UP Index',         # S&P World Real Estate (Sector) Index (USD) — start 2016
+
+    'RGUSF06 Index',          # Russell 3000 Index Real Estate — start 2013
+    'R250035T Index',         # Russell 2500 Real Estate Total Return Index — start 2009
+
+    'IXRE Index',             # Real Estate Select Sector Index — start 2011
+
+    'NTDREP Index',           # NORTHERN TRUST DEVELOPED REAL ESTATE PRICE INDEX (USD) — start 2016
+
+    'MREIGRUP Index',         # Morningstar Global Markets REIT PR USD — start 2004
+
+    'MQ5CREAP Index',         # MerQube US Large Cap Real Estate Index — start 2002
+
+
+    'IIDKRYT Index',          # Invesco Developed Markets ex-Japan All Cap REIT Total Return Index (JPY) — start 2006
+    'IIJRYT Index',           # Invesco Japan All Cap REIT Total Return Index (JPY) — start 2006
+
+    'REITGLEU Index',         # GPR 250 REIT WORLD INDEX/ EUR — start 1998
+
+    'DWLDREP Index',          # Euronext Developed World Real Estate Total Market — start 2009
+
+    'DWRTF Index',            # Dow Jones Wilsire REIT Index Full Cap — start 1998
+
+    'BXIICCRT Index',         # DigitalBridge Fundamental US Real Estate Index Total Return — start 2003
+
+    'DWEURT Index',           # DJEurpslct REIT — start 2004
+    'DWAPRT Index',           # DJAsiaPslct REIT — start 2004
+    'DWAMRT Index',           # DJAmrslct REIT — start 2004
+
+    'CRSPRE1 Index',          # CRSP US Real Estate & REITs Index — start 2010
+
+    'SZ399367 Index',         # CNI Real Estate 50 Index — start 2009
+
+    'MLEUREAL Index',         # BofA EU Real Estate — start 1999
+
+    'WLSTR Index',      # Bloomberg World Real Estate Large, Mid & Small Cap Total Return Index — start 2002
+    'SREITWHT Index',         # BMI Developed REIT JPY-Hedged TR — start 1988
+    'IMOBBV Index',           # BM&FBOVESPA Real Estate Index — start 2007
+
+    'SAP10XP Index',          # 10X SA Property Index — start 2015
+]
 
 file_path = r"C:\repos\factors\real_estate.xlsx"
-# Assume dates are in the first column and tickers as headers
+
 df = pd.read_excel(
     file_path,
     header=0,
@@ -22,7 +77,7 @@ df = df[(df != 0).all(axis=1)]
 
 
 
-# 1) Load the CSV
+
 from weights import (
     europe_weights,
     us_weights,

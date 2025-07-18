@@ -53,7 +53,7 @@ pca = PCA()
 pcs = pca.fit_transform(X_std)
 
 pc_cols = [f"PC{i+1}" for i in range(pcs.shape[1])]
-df_pcs = pd.DataFrame(pcs, index=df.index, columns=pc_cols)
+df_pcs = pd.DataFrame(pcs, index=df.index, columns=pd.Index(pc_cols))
 
 print(df_pcs.head())
 print("Explained variance:", pca.explained_variance_ratio_)
@@ -65,7 +65,7 @@ pc1_weights = pd.Series(
     index=df.columns, 
     name="PC1_weight"
 )
-
+pc1_returns_shortvol = df_pcs['PC1']
 print(pc1_weights)
 #clean the data for msci
 #problem with sci beta it does not have the same last day month returns every 4 months

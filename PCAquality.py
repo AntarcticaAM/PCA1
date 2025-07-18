@@ -31,7 +31,7 @@ quality_tickers = [
     'R1FQFR Index',           # Russell 1000 Quality Factor Index — start 2017
     'R2FQF Index',            # Russell 2000 Quality Factor Total Return Index — start 2006
 
-    #'UBPTQLTY Index',         # UBS L/S Quality Quant Factor — start 2017 second 68% to 72%
+    'UBPTQLTY Index',         # UBS L/S Quality Quant Factor — start 2017 second 68% to 72%
     'UBSHTGQG Index',         # UBS HOLT Equity Factor Global Quality USD Gross Total Return Index
 ]
 
@@ -126,9 +126,7 @@ pc1_weights = pd.Series(
     name="PC1_weight"
 )
 
-pc1_returns = df_pcs['PC1']
-pc1_returns.name = 'PC1_returns'
-pc1_returns.to_csv("pc1_returns.csv", index=True, header=True)
+pc1_returns_quality = df_pcs['PC1']
 
 print(pc1_weights)
 #clean the data for msci

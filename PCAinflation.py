@@ -45,11 +45,13 @@ BofA_weights_momentum = pd.DataFrame({
     'MLDEFL8 Index': us_weights/2, # ANTI INFLATION
 })
 sum_of_weights_BofA = BofA_weights_momentum.sum(axis=1)
-print(sum_of_weights_BofA)
 BofA_weights_momentum = BofA_weights_momentum.div(BofA_weights_momentum.sum(axis=1), axis=0)
-print(BofA_weights_momentum.index.min(), BofA_weights_momentum.index.max())
-# (Optional) Check that each row sums to 1
-print(BofA_weights_momentum.sum(axis=1))
+region_BofA = df.loc[:,list(BofA_weights_momentum)].apply(pd.to_numeric, errors='coerce')
+region_BofA = region_BofA[BofA_weights_momentum.columns]
+
+
+df['BofA_World_Growth'] = (region_BofA * BofA_weights_momentum).sum(axis=1)
+df.drop(columns=list(region_BofA), inplace=True) 
 
 
 print(df)
@@ -62,7 +64,7 @@ pca = PCA()
 pcs = pca.fit_transform(X_std)
 
 pc_cols = [f"PC{i+1}" for i in range(pcs.shape[1])]
-df_pcs = pd.DataFrame(pcs, index=df.index, columns=pc_cols)
+df_pcs = pd.DataFrame(pcs, index=df.index, columns=pd.Index(pc_cols))
 
 print(df_pcs.head())
 print("Explained variance:", pca.explained_variance_ratio_)
@@ -74,6 +76,8 @@ pc1_weights = pd.Series(
     index=df.columns, 
     name="PC1_weight"
 )
+
+pc1_returns_inflation = df_pcs['PC1']
 
 print(pc1_weights)
 #clean the data for msci

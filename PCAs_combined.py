@@ -1,0 +1,12 @@
+import pandas as pd
+
+from PCAgrowth import pc1_returns_growth
+from PCAvalue import pc1_returns_value
+from PCAquality import pc1_returns_quality
+from PCAinflation import pc1_returns_inflation
+from PCAcommodity import pc1_returns_commodity
+from PCAdenfensive import pc1_returns_defensive
+from PCAgrowded import pc1_returns_crowded
+from PCArealestate import pc1_returns_realestate
+from PCAshortvol import pc1_returns_shortvol
+from PCAsize import pc1_returns_size

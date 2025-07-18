@@ -3,6 +3,7 @@ import statsmodels.api as sm
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import DBSCAN
 import matplotlib.pyplot as plt
+from fund_cluster_summary import FundClusterSummary
 
 class FactorClusterer:
     """
@@ -24,8 +25,8 @@ class FactorClusterer:
         self,
         factor_series: pd.Series,
         fund_returns: pd.DataFrame,
-        eps: float = 0.05,
-        min_samples: int = 3
+        eps: float,
+        min_samples: int 
     ):
         self.factor = factor_series.rename('PC1')
         self.funds = fund_returns.copy()
@@ -119,3 +120,24 @@ if __name__ == '__main__':
 
     print(result.sort_values('beta'))
 
+
+if __name__ == "__main__":
+    # 1) PCA
+    pipelines = FactorPCA.run_all()
+
+    # 2) Load funds
+    funds_df = pd.read_excel(
+        r"C:\repos\factors\real_estate.xlsx",
+        index_col=0, parse_dates=True
+    )
+
+    # 3) Summarize clusters across factors
+    summary_builder = FundClusterSummary(
+        pipelines=pipelines,
+        funds_df=funds_df,
+        eps=0.5,
+        min_samples=2
+    )
+    fund_table = summary_builder.build()
+    print(fund_table)
+    fund_table.to_excel(r"C:\repos\factors\fund_table.xlsx")
