@@ -59,7 +59,7 @@ real_estate_tickers = [
     'SAP10XP Index',          # 10X SA Property Index — start 2015
 ]
 
-file_path = r"C:\repos\factors\real_estate.xlsx"
+file_path = r"C:\repos\theexcels\real_estate_factorsfinal.xlsx"
 
 df = pd.read_excel(
     file_path,

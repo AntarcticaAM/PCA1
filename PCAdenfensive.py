@@ -16,7 +16,7 @@ defensive_tickers = [
     #'FCFDF Index',      # Abacus FCF Defensive Equity Leaders Index — start 1997 brings from 74.5% to 86.45%
 ]
 
-file_path = r"C:\repos\factors\defensive_factors copy.xlsx"
+file_path = r"C:\repos\theexcels\defensive_factorsfinal - Copy.xlsx"
 
 df = pd.read_excel(
     file_path,

@@ -16,11 +16,9 @@ class FundFactorExposure:
         funds are here in price and not percentage returns this is a test
         """
         self.pipelines = pipelines
-
-        prices = funds_df.apply(pd.to_numeric, errors='coerce')
-        returns_df  = prices.pct_change().dropna(how='all')
-        self.funds_df = returns_df
-
+        raw_returns = funds_df.apply(pd.to_numeric, errors='coerce')
+        deduped_returns = raw_returns[~raw_returns.index.duplicated(keep='first')]
+        self.funds_df = deduped_returns.dropna(how='all')
         self.factors_df = pd.concat(
             [pipe.pc1_returns.rename(name)
              for name, pipe in pipelines.items()],
@@ -37,7 +35,10 @@ class FundFactorExposure:
         for fund in self.funds_df.columns:
 
             y = self.funds_df[fund]
-            y = y[~y.index.duplicated(keep='first')].rename('fund')
+            if not isinstance(y, pd.Series):
+                y = pd.Series(y, index=self.funds_df.index)
+            y = y[~y.index.duplicated(keep='first')]
+            y = y.rename('fund')  # Use .rename() to set the Series name
 
             df = pd.concat([self.factors_df, y], axis=1).dropna()
 
@@ -57,7 +58,7 @@ if __name__ == "__main__":
     pipelines = FactorPCA.run_all()
 
     funds_df = pd.read_excel(
-        r"C:\repos\factors\real_estate.xlsx",
+        r"C:\repos\factors\johnjohn_funds_performance.xlsx",
         index_col=0,
         parse_dates=True
     )
@@ -67,3 +68,7 @@ if __name__ == "__main__":
 
     print("\n=== Fund × Factor Beta Matrix ===")
     print(all_betas)
+    all_betas.to_excel(r"C:\repos\factors\johnjohn_funds_performance_betas3.xlsx", index=True)
+    print(pipelines['momentum'].pc1_returns.head(10))
+    print(funds_df.head(10))
+    print(analyzer.analyze_all().loc[['Lasker Fund'], ['momentum']])

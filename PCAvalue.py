@@ -7,27 +7,31 @@ from tickers2 import hsbc_weights_value
       # the PCA implementation
 #*** I need to find a way to just import the ones I want to use**
 value_tickers = [
-    'HSIEQEUT Index',   # HSBC Quality Factor Europe Net Total Return Index (USD) — start 2007
-    'HSIEQUTU Index',   # HSBC Quality Factor US Net Total Return Index (USD) — start 2007
-    'CGRQPUSQ Index',   # Citi pure US — start 1995
-    'CGRQPEUQ Index',   # Citi pure EU — start 1995
-    'CGRQPAUQ Index',   # Citi pure AU — start 1995
-    'CGRQPJPQ Index',   # Citi pure JP — start 1995
-    'CGRQPASQ Index',   # Citi pure AsiaexJP — start 1995
-    'AWPQTE Index',     # FTSE Pure Target Exposure — start 2000
-    'DBRPGEQU Index',   # DB Equity Quality Factor 2.0 USD Excess Return Index — start 2000 if removed 65% to 70% first one to be
-    'NQFFLQ Index',     # Nasdaq Factor Laggard US Quality Index — start 2000
-    'NQFFQ Index',      # Nasdaq Factor Family US Quality Index — start 2000
-    'R2FQF Index',      # Russell 2000 Quality Factor Total Return Index — start 2006
-    'UBPTQLTY Index',   # UBS L/S Quality Quant Factor — start 2017
-    'UBSHTGQG Index',   # UBS HOLT Equity Factor Global Quality USD Gross Total Return Index — start 2006
-    'SPXPV INDEX',      # S&P 500 — start 1996
-    'SPUSNPV INDEX',    # S&P 900 — start 1996
-    'SPUSCPV INDEX',    # S&P 1500 — start 1996
-    'PVALUEUS INDEX',   # Bloom US — start 2000 ~ second to be 70 to 75%
+    "AWPVTE Index",  # FTSE All-World Pure Value Target Exposure Factor Index — start 1999
+    "FIDINVLT Index",  # Fidelity International Value Factor Index TR — start 1994
+    "GSIPVALL Index",  # GS International Value long — start 2006
+    "GSRPEVWG Index",  # GS Tactical Factor Value World Top GTR USD — start 2006
+    "GSRPEVWH Index",  # GS Tactical Factor Value World Bottom GTR USD — start 2006
+    "NQFFV Index",  # Nasdaq Factor Family US Value Index — start 2002
+    "RADMFUVT Index",  # Radcliffe US Value Factor Index TR — start 1990
+    "UBSHTGVG Index",  # UBS HOLT Equity Factor Global Value USD Gross Total Return Index — start 2002
+    "VFVANV Index",  # Vanguard U.S. Value Factor NAV Index - start 2018
+    "CGRQPEUV Index",  # Citi EU Pure Value — start 1994
+    "CGRQPUSV Index",  # Citi US Pure Value — start 1994
+    "CGRQPJPV Index",  # Citi JP Pure Value — start 1996
+    "CGRQPASV Index",  # Citi AsiaexJP Pure Value — start 1996
+    "CGRQPAUV Index",  # Citi AU Pure Value — start 1996
+    "SPUSCPV Index",  # S&P 1500 Value U.S. Dollar Index — start 1996
+    "SPMPV Index",  # S&P MidCap 400 Value U.S. Dollar Index — start 1996
+    "R2KPVALP Index",  # Russell 2000 Value Index — start 1997
+    "UBXXPVAL Index",  # UBS Factor Value Index — start 2017
+    "AWPVTE Index",  # FTSE All-World Pure Value Target Exposure Factor Index — start 2001
+    "PVALUEUS Index",  # Bloomberg US Value Factor Index — start 2000jp
+    "JVALTR Index",  # JPMorgan US Value Factor Index TR — start 2000
+    "MXWO000V Index",  # MSCI World Value Index — start 1974
 ]
 # 1) Load your existing Excel of raw momentum prices
-file_path = r"C:\repos\factors\value_factors2.xlsx"
+file_path = r"C:\repos\theexcels\value_factorsfinal - Copy.xlsx"
 # Assume dates are in the first column and tickers as headers
 df = pd.read_excel(
     file_path,
@@ -38,7 +42,7 @@ df = pd.read_excel(
 )
 
 df = df.ffill()
-df = df.pct_change()
+df = df.apply(lambda c: c.pct_change(fill_method=None) if c.abs().median() > 1 else c)
 print(df)
 
 df = df[(df != 0).all(axis=1)]
@@ -58,35 +62,47 @@ from weights import (
     Americas_weights
 )
 
-hsbc_weights_value = pd.DataFrame({
-    'HSIEQETU Index': europe_weights,
-    'HSIEQUTU Index': us_weights,
+GS_weights_Value = pd.DataFrame({
+    'GSRPEVWG Index': us_weights,  # DJEurpslct REIT — start 2004
+    'GSRPEVWH Index': us_weights,  # DJAsiaPslct REIT — start 2004
 })
-sum_of_weights_hsbc = hsbc_weights_value.sum(axis=1)
-hsbc_weights_value = hsbc_weights_value.div(hsbc_weights_value.sum(axis=1), axis=0)
-region_hsbc = df.loc[:,list(hsbc_weights_value)].apply(pd.to_numeric, errors='coerce')
-region_hsbc = region_hsbc[hsbc_weights_value.columns]
 
+sum_of_weights_GS = GS_weights_Value.sum(axis=1)
+GS_weights_Value = GS_weights_Value.div(GS_weights_Value.sum(axis=1), axis=0)
+region_GS = df.loc[:,list(GS_weights_Value)].apply(pd.to_numeric, errors='coerce')
+region_GS = region_GS[GS_weights_Value.columns]
+df['GS_World_Value'] = (region_GS * GS_weights_Value).sum(axis=1)
+print(df['GS_World_Value'])
+df.drop(columns=region_GS.columns, inplace=True)
 
-df['hsbc_World_Growth'] = (region_hsbc * hsbc_weights_value).sum(axis=1)
-df.drop(columns=region_hsbc.columns, inplace=True) 
-
-
-citi_weights_value = pd.DataFrame({
-    'CGRQPUSQ Index': us_weights,   # Citi pure US — start 1995
-    'CGRQPEUQ Index': europe_weights,   # Citi pure EU — start 1995
-    'CGRQPAUQ Index': Australia_weights,   # Citi pure AU — start 1995
-    'CGRQPJPQ Index': Japan_weights,   # Citi pure JP — start 1995
-    'CGRQPASQ Index': Asia_Pacific_weights - Japan_weights,   # Citi pure AsiaexJP — start 1995
+citi_weights_Value = pd.DataFrame({
+    'CGRQPEUV Index': europe_weights,  # DJEurpslct REIT — start 2004
+    "CGRQPUSV Index": us_weights,  # Citi US Pure Value — start 1994
+    "CGRQPJPV Index": Japan_weights,  # Citi JP Pure Value — start 1996
+    "CGRQPASV Index": Asia_Pacific_weights - Japan_weights,  # Citi AsiaexJP Pure Value — start 1996
+    "CGRQPAUV Index": Australia_weights,  # Citi AU Pure Value — start 1996
 })
-sum_of_weights_citi = citi_weights_value.sum(axis=1)
-citi_weights_value = citi_weights_value.div(citi_weights_value.sum(axis=1), axis=0)
-region_citi = df.loc[:,list(citi_weights_value)].apply(pd.to_numeric, errors='coerce')
-region_citi = region_citi[citi_weights_value.columns]
 
+sum_of_weights_citi = citi_weights_Value.sum(axis=1)
+citi_weights_Value = citi_weights_Value.div(citi_weights_Value.sum(axis=1), axis=0)
+region_citi = df.loc[:,list(citi_weights_Value)].apply(pd.to_numeric, errors='coerce')
+region_citi = region_citi[citi_weights_Value.columns]
+df['Citi_World_Value'] = (region_citi * citi_weights_Value).sum(axis=1)
+print(df['Citi_World_Value'])
+df.drop(columns=region_citi.columns, inplace=True)
 
-df['citi_World_value'] = (region_citi * citi_weights_value).sum(axis=1)
-df.drop(columns=region_citi.columns, inplace=True) 
+SP_weights_Value = pd.DataFrame({
+    "SPUSCPV Index": us_weights,  # S&P 1500 Value U.S. Dollar Index — start 1996
+    "SPMPV Index": us_weights,  # S&P MidCap 400 Value U.S. Dollar Index — start 1996
+})
+
+sum_of_weights_SP = SP_weights_Value.sum(axis=1)
+SP_weights_Value = SP_weights_Value.div(SP_weights_Value.sum(axis=1), axis=0)
+region_SP = df.loc[:,list(SP_weights_Value)].apply(pd.to_numeric, errors='coerce')
+region_SP = region_SP[SP_weights_Value.columns]
+df['SP_World_Value'] = (region_SP * SP_weights_Value).sum(axis=1)
+print(df['SP_World_Value'])
+df.drop(columns=region_SP.columns, inplace=True)
 
 
 print(df)

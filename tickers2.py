@@ -1,23 +1,26 @@
 value_tickers = [
-    'HSIEEQUT Index',   # HSBC Quality Factor Europe Net Total Return Index (USD) — start 2007
-    'HSIEQUTU Index',   # HSBC Quality Factor US Net Total Return Index (USD) — start 2007
-    'CGRQPUSQ Index',   # Citi pure US — start 1995
-    'CGRQPEUQ Index',   # Citi pure EU — start 1995
-    'CGRQPAUQ Index',   # Citi pure AU — start 1995
-    'CGRQPJPQ Index',   # Citi pure JP — start 1995
-    'CGRQPASQ Index',   # Citi pure AsiaexJP — start 1995
-    'AWPQTE Index',     # FTSE Pure Target Exposure — start 2000
-    'DBRPGEQU Index',   # DB Equity Quality Factor 2.0 USD Excess Return Index — start 2000
-    'NQFFLQ Index',     # Nasdaq Factor Laggard US Quality Index — start 2000
-    'NQFFQ Index',      # Nasdaq Factor Family US Quality Index — start 2000
-    'R1FQFR Index',     # Russell 1000 Quality Factor Index — start 2017
-    'R2FQF Index',      # Russell 2000 Quality Factor Total Return Index — start 2006
-    'UBPTQLTY Index',   # UBS L/S Quality Quant Factor — start 2006
-    'UBSHTGQG Index',   # UBS HOLT Equity Factor Global Quality USD Gross Total Return Index — start 2006
-    'SPXPV INDEX',      # S&P 500 — start 1996
-    'SPUSNPV INDEX',    # S&P 900 — start 1996
-    'SPUSCPV INDEX',    # S&P 1500 — start 1996
-    'PVALUEUS INDEX',   # Bloom US — start 2000
+    "AWPVTE Index",  # FTSE All-World Pure Value Target Exposure Factor Index — start 1999
+    "FIDINVLT Index",  # Fidelity International Value Factor Index TR — start 1994
+    "GSIPVALL Index",  # GS International Value long — start 2006
+    "GSRPEVWG Index",  # GS Tactical Factor Value World Top GTR USD — start 2006
+    "GSRPEVWH Index",  # GS Tactical Factor Value World Bottom GTR USD — start 2006
+    "NQFFV Index",  # Nasdaq Factor Family US Value Index — start 2002
+    "RADMFUVT Index",  # Radcliffe US Value Factor Index TR — start 1990
+    "UBSHTGVG Index",  # UBS HOLT Equity Factor Global Value USD Gross Total Return Index — start 2002
+    "VFVANV Index",  # Vanguard U.S. Value Factor NAV Index - start 2018
+    "CGRQPEUV Index",  # Citi EU Pure Value — start 1994
+    "CGRQPUSV Index",  # Citi US Pure Value — start 1994
+    "CGRQPJPV Index",  # Citi JP Pure Value — start 1996
+    "CGRQPASV Index",  # Citi AsiaexJP Pure Value — start 1996
+    "CGRQPAUV Index",  # Citi AU Pure Value — start 1996
+    "SPUSCPV Index",  # S&P 1500 Value U.S. Dollar Index — start 1996
+    "SPMPV Index",  # S&P MidCap 400 Value U.S. Dollar Index — start 1996
+    "R2KPVALP Index",  # Russell 2000 Value Index — start 1997
+    "UBXXPVAL Index",  # UBS Factor Value Index — start 2017
+    "AWPVTE Index",  # FTSE All-World Pure Value Target Exposure Factor Index — start 2001
+    "PVALUEUS Index",  # Bloomberg US Value Factor Index — start 2000jp
+    "JVALTR Index",  # JPMorgan US Value Factor Index TR — start 2000
+    "MXWO000V Index",  # MSCI World Value Index — start 1974
 ]
 # Crowded factor tickers
 crowded_tickers = [
@@ -25,6 +28,7 @@ crowded_tickers = [
     'CGRBELCR Index',   # Citi least crowded — start 2017
     'BCSUCROW Index',   # 13F HF crowded 13F — start 2004
     'UBPTCRWD Index',   # World Crowded Longs vs. Crowded Shorts — start 2017
+    'MSZZCRST Index',    # crowded vs short int
 ]
 
 # Short vol factor tickers
@@ -35,15 +39,17 @@ short_vol_tickers = [
     'ABRXIV Index',     # ABR Enhanced Short Volatility Index — start 2005
     'R1LTELS Index',    # Russell 1000 Pure Low Volatility Target Exposure Factor Long Short Index — start 2012
     'WEIXARB Index',    # Dynamic Short Volatility Futures Index — start 2007
+
 ]
 
 # Inflation factor tickers
 inflation_tickers = [
     'CSIIGL Index',     # Citi Inflation Surprise Index – Global — start 1999
     'SBILUU Index',     # FTSE World Inflation-Linked Securities USD — start 2011
-    'BTSIIMAI Index',   # Bloomberg IQ Multi-Asset Inflation Index — start 2015
     'MLINFL8 Index',    # BofA Pro Inflation — start year unspecified
     'MLDEFL8 Index',    # BofA Anti-Inflation — start year unspecified
+    'BINFLSN Index',  # Bloomberg Inflation Linked Securities Index NRI — start 2006
+    'CGUSINFL Index',  # Citi US Inflation macro factor — start 2000
 ]
 real_estate_tickers = [
     'CGRBGREI Index',   # Citi Global Real Estate #2016

@@ -24,9 +24,10 @@ size_tickers = [
     'SGEPSBW Index',          # SGI World Size Index — start 2001
 
     'WUPSL Index',            # FT Wilshire US Large Pure Size Index — start 2017
+    'MS Factor - US Size'
 ]
 
-file_path = r"C:\repos\factors\size_factors.xlsx"
+file_path = r"C:\repos\theexcels\size_factorsfinal.xlsx"
 
 df = pd.read_excel(
     file_path,
@@ -37,7 +38,7 @@ df = pd.read_excel(
 )
 
 df = df.ffill()
-df = df.pct_change()
+df = df.apply(lambda c: c.pct_change(fill_method=None) if c.abs().median() > 1 else c)
 print(df)
 
 df = df[(df != 0).all(axis=1)]

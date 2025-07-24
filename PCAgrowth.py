@@ -68,9 +68,10 @@ growth_tickers = [
     'IIDGROW Index',           # Invesco Dynamic Growth Index — start 2006
 
     'MSGGTMGU Index',          # Morningstar Global Growth Target Market Exposure GR USD — start 2007
+    'now also features ms factors but these are not indices'
 ]
 
-file_path = r"C:\repos\factors\growth_factors1.xlsx"
+file_path = r"C:\repos\theexcels\growth_factorsfinal.xlsx"
 
 df = pd.read_excel(
     file_path,
@@ -81,7 +82,7 @@ df = pd.read_excel(
 )
 
 df = df.ffill()
-df = df.pct_change()
+df = df.apply(lambda c: c.pct_change(fill_method=None) if c.abs().median() > 1 else c)
 print(df)
 
 df = df[(df != 0).all(axis=1)]
@@ -96,7 +97,8 @@ from weights import (
     developped_exNorthAmerica_weights,
     Canada_weights,
     China_weights,
-    Australia_weights
+    Australia_weights,
+    Asia_Pacific_weights
 )
 
 Citi_weights_growth = pd.DataFrame({
@@ -170,6 +172,18 @@ region_CITIC = region_CITIC[CITIC_weights_growth.columns]
 df['CITIC_World_Growth'] = (region_CITIC * CITIC_weights_growth).sum(axis=1)
 df.drop(columns=region_CITIC.columns, inplace=True) 
 
+MS_weights_growth = pd.DataFrame({
+    'MS Factor - US GROWTH': us_weights,  # CITIC CLSA US Stable Growth Basket — start 2011
+    'MS Factor - EU Growth': europe_weights,
+    'MS Factor - JP Growth': Japan_weights,
+    'MS Factor - AxJ Growth': Asia_Pacific_weights - Japan_weights,
+})
+sum_of_weights_MS = MS_weights_growth.sum(axis=1)
+MS_weights_growth = MS_weights_growth.div(MS_weights_growth.sum(axis=1), axis=0)
+region_MS = df.loc[:,list(MS_weights_growth)].apply(pd.to_numeric, errors='coerce')
+region_MS = region_MS[MS_weights_growth.columns]
+df['MS_World_Growth'] = (region_MS * MS_weights_growth).sum(axis=1)
+df.drop(columns=region_MS.columns, inplace=True)
 
 print(df)
 df = df.dropna()
@@ -198,5 +212,6 @@ pc1_weights = pd.Series(
 )
 pc1_returns_growth = df_pcs['PC1']
 print(pc1_weights)
+print(pc1_returns_growth)
 #clean the data for msci
 #problem with sci beta it does not have the same last day month returns every 4 months

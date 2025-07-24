@@ -10,3 +10,4 @@ from PCAgrowded import pc1_returns_crowded
 from PCArealestate import pc1_returns_realestate
 from PCAshortvol import pc1_returns_shortvol
 from PCAsize import pc1_returns_size
+from PCAmomentum import pc1_returns_momentum

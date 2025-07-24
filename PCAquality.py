@@ -33,9 +33,10 @@ quality_tickers = [
 
     'UBPTQLTY Index',         # UBS L/S Quality Quant Factor — start 2017 second 68% to 72%
     'UBSHTGQG Index',         # UBS HOLT Equity Factor Global Quality USD Gross Total Return Index
+    'added MS factors but these are not indices'
 ]
 
-file_path = r"C:\repos\factors\quality_factors.xlsx"
+file_path = r"C:\repos\theexcels\quality_factorsfinal.xlsx"
 
 df = pd.read_excel(
     file_path,
@@ -46,7 +47,7 @@ df = pd.read_excel(
 )
 
 df = df.ffill()
-df = df.pct_change()
+df = df.apply(lambda c: c.pct_change(fill_method=None) if c.abs().median() > 1 else c)
 print(df)
 
 df = df[(df != 0).all(axis=1)]
@@ -89,17 +90,30 @@ region_citi = region_citi[citi_weights_quality.columns]
 df['citi_World_Quality'] = (region_citi * citi_weights_quality).sum(axis=1)
 df.drop(columns=region_citi.columns, inplace=True) 
 
+MS_weights_quality = pd.DataFrame({
+    'MS Factor - US Quality': us_weights,
+    'MS Factor - EU Quality': europe_weights,
+    'MS Factor - JP Quality': Japan_weights,
+    'MS Factor - AxJ Quality': Asia_Pacific_weights - Japan_weights,
+})
+sum_of_weights_MS = MS_weights_quality.sum(axis=1)
+MS_weights_quality = MS_weights_quality.div(MS_weights_quality.sum(axis=1), axis=0)
+region_MS = df.loc[:,list(MS_weights_quality)].apply(pd.to_numeric, errors='coerce')
+region_MS = region_MS[MS_weights_quality.columns]
+df['MS_World_Quality'] = (region_MS * MS_weights_quality).sum(axis=1)
+df.drop(columns=region_MS.columns, inplace=True) 
+
 DB_weights_quality = pd.DataFrame({
-    'DBRPAEQU Index': Asia_Pacific_weights,
-    'DBRPEEQE Index': europe_weights,
-    'DBRPNEQU Index': us_weights,
+    'DBRPAEQU Index': Asia_Pacific_weights,        # DB Asia Equity Quality Factor 2.0 USD Excess Return Index
+    'DBRPEEQE Index': europe_weights,              # DB Europe Equity Quality Factor 2.0 EUR Excess Return Index
+    'DBRPNEQU Index': us_weights + Canada_weights      # DB North America Equity Quality Factor 2.0 USD Excess Return Index
 })
 sum_of_weights_DB = DB_weights_quality.sum(axis=1)
 DB_weights_quality = DB_weights_quality.div(DB_weights_quality.sum(axis=1), axis=0)
 region_DB = df.loc[:,list(DB_weights_quality)].apply(pd.to_numeric, errors='coerce')
 region_DB = region_DB[DB_weights_quality.columns]
 df['DB_World_Quality'] = (region_DB * DB_weights_quality).sum(axis=1)
-df.drop(columns=region_DB.columns, inplace=True) 
+df.drop(columns=region_DB.columns, inplace=True)
 
 print(df)
 df = df.dropna()

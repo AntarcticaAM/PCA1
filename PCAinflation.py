@@ -15,12 +15,12 @@ from weights import (
 inflation_tickers = [
     'CSIIGL Index',     # Citi Inflation Surprise Index – Global — start 1999 from 65% to 78% if dropped
     'SBILUU Index',     # FTSE World Inflation-Linked Securities USD — start 2011
-    'BTSIIMAI Index',   # Bloomberg IQ Multi-Asset Inflation Index — start 2015
+    'BTSIIMAI Index',   # Bloomberg IQ Multi-Asset Inflation Index — start 2015 has to be deleted no more effective
     'MLINFL8 Index',    # BofA Pro Inflation — start year unspecified
     'MLDEFL8 Index',    # BofA Anti-Inflation — start year unspecified
 ]
 
-file_path = r"C:\repos\factors\inflation_factors.xlsx"
+file_path = r"C:\repos\theexcels\inflation_factors2.xlsx"
 
 df = pd.read_excel(
     file_path,

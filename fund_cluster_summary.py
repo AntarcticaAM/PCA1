@@ -34,12 +34,20 @@ class FundClusterSummary:
 
 
         funds = list(self.funds_df.columns)
-        summary = pd.DataFrame(index=funds)
+        summary = pd.DataFrame(index=pd.Index(funds))
 
 
-        for factor, df in self.results.items():
+        for factor, df in self.clusterer.run_all().items():
+            # Map integer cluster → descriptive name
+            mapping = {
+                -1: 'noise',
+                 0: 'low beta',
+                 1: 'mid beta',
+                 2: 'high beta'
+            }
+            df['cluster_name'] = df['cluster'].map(mapping).fillna('unknown')
 
-            summary[f'{factor}_cluster'] = df['cluster']
+            summary[f'{factor}_beta']  = df['beta']
             summary[f'{factor}_label'] = df['cluster_name']
 
         return summary

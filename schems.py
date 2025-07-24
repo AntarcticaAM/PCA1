@@ -94,5 +94,31 @@ schemes_value = {
         'CGRQPJPQ Index': Japan_weights,
     },
 }
+schemes_momentum = {
+    "scibeta_weights_momentum":{
+        'SBEXMHMN Index': europe_weights,    # SciBeta Eurozone High-Momentum Multi-Strat Net Return — start 2001
+        'SBJXMHMN Index': Japan_weights,    # SciBeta Japan High-Momentum Multi-Strat Net Return — start year unspecified
+        'SBUXMLMN Index': us_weights,    # SciBeta USA High-Momentum Multi-Strat Net Return — start year unspecified
+    },
+    "gs_weights_momentum":{
+        'GSPEMOMO Index': europe_weights,    # GS EU High Beta Momentum — start 2006
+        'GSCNDMOS Index': us_weights/2,    # GS CND US Momentum Short — start 2010
+        'GSCNDMOL Index': us_weights/2,    # GS CND US Momentum Long — start year unspecified
+    },
+    "barclays_weights_momentum":{
+        'BXIIMETE Index': europe_weights,    # Barclays Eurozone Momentum Equity TR EUR Index start 2001
+        'BXIIMJTJ Index': Japan_weights,    # Barclays Japan Momentum Equity TR JPY Index
+        'BXIIMUTU Index': us_weights,    # Barclays US Momentum Equity TR USD Index
+    },           # Invesco Global Price Momentum Total Return Index — start 2001
+    "morningstar_weights_momentum":{
+        'MMO50P Index': us_weights,            # Morningstar US Momentum Target 50 USD PR — start 2002
+        'MSDMUP Index': developped_exNorthAmerica_weights,            # Morningstar Developed Markets ex-North America Target Momentum PR USD — start 2013
+        'MCMOP Index': Canada_weights,             # Morningstar Canada Momentum Index PR CAD — start 1999
+    },
+    "rbc_weights_momentum":{
+        'RBCUMTML Index': us_weights/2,          # RBC US Momentum Long Index USD GROSS — start 2006
+        'RBCUMTMS Index': us_weights/2,          # RBC US Momentum Short Index USD GROSS — start 2006
+    },
+}
 
 

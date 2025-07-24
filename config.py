@@ -1,5 +1,5 @@
 import pandas as pd
-from schems import ( schemes_growth, schemes_quality, schemes_inflation, schemes_realestate, schemes_size, schemes_value )
+from schems import ( schemes_growth, schemes_quality, schemes_inflation, schemes_realestate, schemes_size, schemes_value, schemes_momentum )
 
 CONFIG = {
         'growth': {
@@ -37,5 +37,9 @@ CONFIG = {
         },
         'shortvol': {
             'file_path': r"C:\repos\factors\short_vol_factors.xlsx",
+        },
+        'momentum': {
+            'file_path': r"C:\repos\factors\momentum_factors144.xlsx",
+            'schemes': schemes_momentum
         },
 }

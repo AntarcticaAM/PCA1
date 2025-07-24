@@ -9,9 +9,10 @@ crowded_tickers = [
     'CGRBELCR Index',   # Citi least crowded — start 2017
     'BCSUCROW Index',   # 13F HF crowded 13F — start 2004
     'UBPTCRWD Index',   # World Crowded Longs vs. Crowded Shorts — start 2017  by dropping goes from 75% to 89%
+    'MSZZCRST Index',    # crowded vs short interest
 ]
 
-file_path = r"C:\repos\factors\crowded_factors.xlsx"
+file_path = r"C:\repos\theexcels\crowded_factors2.xlsx"
 
 df = pd.read_excel(
     file_path,
@@ -36,6 +37,17 @@ from weights import (
     developped_exNorthAmerica_weights,
     Canada_weights
 )
+citi_weights_crowded = pd.DataFrame({
+    'CGRBEMCR Index': us_weights,
+    'CGRBELCR Index': us_weights,
+})
+
+sum_of_weights_citi = citi_weights_crowded.sum(axis=1)
+citi_weights_crowded = citi_weights_crowded.div(citi_weights_crowded.sum(axis=1), axis=0)
+region_citi = df.loc[:,list(citi_weights_crowded)].apply(pd.to_numeric, errors='coerce')
+region_citi = region_citi[citi_weights_crowded.columns]
+df['citi_World_crowded'] = (region_citi * citi_weights_crowded).sum(axis=1)
+df.drop(columns=region_citi.columns, inplace=True)
 
 print(df)
 df = df.dropna()

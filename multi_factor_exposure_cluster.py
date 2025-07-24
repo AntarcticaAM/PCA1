@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
 
     funds_df = pd.read_excel(
-        r"C:\repos\factors\real_estate.xlsx",
+        r"C:\repos\factors\johnjohn_funds_performance.xlsx",
         index_col=0,
         parse_dates=True
     )

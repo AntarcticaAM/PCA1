@@ -18,7 +18,7 @@ commodity_tickers = [
     #'UISECC55 Index',  # UBS Inflation Commodity Portfolio — start 2007
 ]
 # 1) Load your existing Excel of raw momentum prices
-file_path = r"C:\repos\factors\commodity_factors.xlsx"
+file_path = r"C:\repos\theexcels\commodity_factorsfinal.xlsx"
 # Assume dates are in the first column and tickers as headers
 df = pd.read_excel(
     file_path,
