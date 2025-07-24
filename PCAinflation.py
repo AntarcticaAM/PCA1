@@ -18,10 +18,12 @@ inflation_tickers = [
     'BTSIIMAI Index',   # Bloomberg IQ Multi-Asset Inflation Index — start 2015 has to be deleted no more effective
     'MLINFL8 Index',    # BofA Pro Inflation — start year unspecified
     'MLDEFL8 Index',    # BofA Anti-Inflation — start year unspecified
+    'BCITAT Index',
+    'GBIE13US Index',
+    'CGUSINFL Index',  # Citi US Inflation macro factor — start 2000
 ]
 
-file_path = r"C:\repos\theexcels\inflation_factors2.xlsx"
-
+file_path = r"C:\repos\theexcels\inflation_factors_cleaned.xlsx"
 df = pd.read_excel(
     file_path,
     header=0,
@@ -39,19 +41,31 @@ df = df[(df != 0).all(axis=1)]
 
 
 
-
-BofA_weights_momentum = pd.DataFrame({
+BofA_weights_inflation = pd.DataFrame({
     'MLINFL8 Index': us_weights/2, # PRO INFLATION
     'MLDEFL8 Index': us_weights/2, # ANTI INFLATION
 })
-sum_of_weights_BofA = BofA_weights_momentum.sum(axis=1)
-BofA_weights_momentum = BofA_weights_momentum.div(BofA_weights_momentum.sum(axis=1), axis=0)
-region_BofA = df.loc[:,list(BofA_weights_momentum)].apply(pd.to_numeric, errors='coerce')
-region_BofA = region_BofA[BofA_weights_momentum.columns]
+sum_of_weights_BofA = BofA_weights_inflation.sum(axis=1)
+BofA_weights_inflation = BofA_weights_inflation.div(BofA_weights_inflation.sum(axis=1), axis=0)
+region_BofA = df.loc[:,list(BofA_weights_inflation)].apply(pd.to_numeric, errors='coerce')
+region_BofA = region_BofA[BofA_weights_inflation.columns]
 
 
-df['BofA_World_Growth'] = (region_BofA * BofA_weights_momentum).sum(axis=1)
-df.drop(columns=list(region_BofA), inplace=True) 
+df['BofA_World_inflation'] = (region_BofA * BofA_weights_inflation).sum(axis=1)
+df.drop(columns=list(region_BofA), inplace=True)
+
+Bonds_weights_inflation = pd.DataFrame({
+    'BCITAT Index': us_weights/2, # PRO INFLATION
+    'GBIE13US Index': us_weights/2, # ANTI INFLATION
+})
+sum_of_weights_Bonds = Bonds_weights_inflation.sum(axis=1)
+Bonds_weights_inflation = Bonds_weights_inflation.div(Bonds_weights_inflation.sum(axis=1), axis=0)
+region_Bonds = df.loc[:,list(Bonds_weights_inflation)].apply(pd.to_numeric, errors='coerce')
+region_Bonds = region_Bonds[Bonds_weights_inflation.columns]
+
+
+df['Bonds_World_inflation'] = (region_Bonds * Bonds_weights_inflation).sum(axis=1)
+df.drop(columns=list(region_Bonds), inplace=True)
 
 
 print(df)
